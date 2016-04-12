@@ -1,51 +1,94 @@
-$(document).ready(function() {
-
-  $("#bankroll").click(function(event) {
-
-      var bankroll = prompt("Thanks for playing BlackJack! How much would you like to buyin with?");
-        console.log(bankroll);
-
-    });
-
-});
-
-
-$("#deal").click(function(){
-           var randNum = Math.floor(Math.random() * 13) + 1;
-           var randSuit = Math.floor(Math.random() * 4) + 1;
-           //the card
-           console.log(randNum);
-           console.log(randSuit);
-         });
+// GLOBAL VARIABLES
+//==============================================================================
+//clickable
+var left = ["one", "two", "three", "four"];
+var middle = ["five"];
+var right = ["three", "one"];
+var invisible = [];
+//win game
+var target = ["five", "four"];
 
 
-$("#bet").click(function() {
-  console.log("this should allow a bet");
-});
+// FUNCTIONS
+//==============================================================================
+var endGame = function() {
+  console.log("Thanks for playing Hanoi Tower");
+}
 
-var card = function Card(n,s) {
-          var number = n;
-          var suit = s;
-          //getters
-          var getNumber = function(){
-                  return this.number;
-          };
-          var getSuit = function(){
-                  return this.suit;
-          };
-          var getValue = function() {
-                if (number >= 11 && number <= 13) return 10
-                    else if (number === 1) return 11
-                        else return number;
-  };
+var checkForWin = function() {
+
+  var leftString = left.join(' ');
+  var middleString = middle.join(' ');
+  var rightString = right.join(' ');
+  var targetString = target.join(' ');
+
+  if (leftString || rightString || middleString == targetString ) {
+  console.log("you won");
+  }
+}
 
 
-var card1 = deal();
-var card2 = deal();
+// MAIN PROCESS
+//==============================================================================
+// start game button
+$( '#button').click(function() {
+  setTimeout(endGame, 1000 * 5);
 
-var hand = function Hand() {
-      this.card1 = deal();
-      this.card2 = deal();
-      var score = card1 + card2;
-  };
-};
+})
+
+
+$( '#left').click(function(){
+  if(invisible.length == 0){
+    // $('#invisible').html(left.pop());
+    // console.log(left.pop());
+    invisible.push(left.pop());
+    console.log(invisible);
+    // console.log(left);
+
+
+  }else{
+    left.push(invisible.pop());
+    console.log(invisible);
+    checkForWin();
+
+  }
+})
+
+$( '#middle').click(function(){
+  if(invisible.length == 0){
+    // $('#invisible').html(left.pop());
+    // console.log(left.pop());
+    invisible.push(middle.pop());
+    console.log(invisible);
+    // console.log(left);
+
+
+  }else{
+    middle.push(invisible.pop());
+    console.log(invisible);
+    checkForWin();
+
+  }
+})
+
+$( '#right').click(function(){
+  if(invisible.length == 0){
+    // $('#invisible').html(left.pop());
+    // console.log(left.pop());
+    invisible.push(right.pop());
+    console.log(invisible);
+    // console.log(left);
+
+
+  }else{
+    right.push(invisible.pop());
+    console.log(invisible);
+    checkForWin();
+
+  }
+})
+
+
+// $( '#invisible').click(function(){
+//   // alert("yo");
+// })
