@@ -1,12 +1,10 @@
 // GLOBAL VARIABLES
 //==============================================================================
-//clickable
-var left = ["one", "two", "three", "four"];
-var middle = ["five"];
-var right = ["three", "one"];
+var left = ["red"];
+var middle = ["blue"];
+var right = ["purple", "yellow", "green"];
 var invisible = [];
-//win game
-var target = ["five", "four"];
+var target = ["purple", "yellow", "green", "blue", "red"];
 
 
 // FUNCTIONS
@@ -22,15 +20,14 @@ var checkForWin = function() {
   var rightString = right.join(' ');
   var targetString = target.join(' ');
 
-  if (leftString || rightString || middleString == targetString ) {
-  console.log("you won");
+  if (middleString == targetString || leftString == targetString || rightString == targetString) {
+    console.log("you won");
   }
 }
 
 
 // MAIN PROCESS
 //==============================================================================
-// start game button
 $( '#button').click(function() {
   setTimeout(endGame, 1000 * 5);
 
@@ -39,12 +36,8 @@ $( '#button').click(function() {
 
 $( '#left').click(function(){
   if(invisible.length == 0){
-    // $('#invisible').html(left.pop());
-    // console.log(left.pop());
     invisible.push(left.pop());
     console.log(invisible);
-    // console.log(left);
-
 
   }else{
     left.push(invisible.pop());
@@ -56,12 +49,8 @@ $( '#left').click(function(){
 
 $( '#middle').click(function(){
   if(invisible.length == 0){
-    // $('#invisible').html(left.pop());
-    // console.log(left.pop());
     invisible.push(middle.pop());
     console.log(invisible);
-    // console.log(left);
-
 
   }else{
     middle.push(invisible.pop());
@@ -73,12 +62,8 @@ $( '#middle').click(function(){
 
 $( '#right').click(function(){
   if(invisible.length == 0){
-    // $('#invisible').html(left.pop());
-    // console.log(left.pop());
     invisible.push(right.pop());
     console.log(invisible);
-    // console.log(left);
-
 
   }else{
     right.push(invisible.pop());
@@ -87,8 +72,3 @@ $( '#right').click(function(){
 
   }
 })
-
-
-// $( '#invisible').click(function(){
-//   // alert("yo");
-// })

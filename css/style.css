@@ -2,3 +2,7 @@
 #button {
     background-color: lightblue;
 }
+
+div.image {
+   content:url(http://placehold.it/350x150);
+}​
